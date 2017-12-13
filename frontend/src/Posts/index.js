@@ -38,15 +38,16 @@ class Posts extends Component {
       })
   }
 
+  allPosts = () => Object.values(this.props.posts);
+
   sortedPosts = () => {
-    const allPosts = Object.values(this.props.posts);
     switch(this.state.sortBy) {
       case 'rank':
-        return allPosts.sort((a,b) => (b.voteScore-a.voteScore));
+        return this.allPosts().sort((a,b) => (b.voteScore-a.voteScore));
       case 'date':
-        return allPosts.sort((a,b) => (b.timestamp-a.timestamp));
+        return this.allPosts().sort((a,b) => (b.timestamp-a.timestamp));
       default:
-        return allPosts;
+        return this.allPosts();
     }
   }
 
@@ -56,7 +57,7 @@ class Posts extends Component {
     return (
       <div>
         <AppBar
-          title={`All Posts (${this.props.posts.length})`}
+          title={`All Posts (${this.allPosts().length})`}
         />
         <Toolbar>
           <ToolbarGroup firstChild={true}>
