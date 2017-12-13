@@ -39,6 +39,19 @@ class Posts extends Component {
       })
   }
 
+  sortedPosts = () => {
+    switch(this.state.sortBy) {
+      case 'rank':
+        return this.state.posts.sort((a,b) => (b.voteScore-a.voteScore));
+      case 'date':
+        return this.state.posts.sort((a,b) => (b.timestamp-a.timestamp));
+      default:
+        return this.state.posts;
+    }
+  }
+
+  setSort = (sortBy) => this.setState({sortBy});
+
   render() {
     return (
       <div>
@@ -50,21 +63,22 @@ class Posts extends Component {
             <RaisedButton label="Create Post" />
             <IconMenu
               iconButtonElement={<IconButton><SortIcon /></IconButton>}
-              value={this.state.rank}
+              value={this.state.sortBy}
             >
-              <MenuItem value="rank" primaryText="Sort by Rank" />
-              <MenuItem value="date" primaryText="Sort by Date" />
+              <MenuItem value="rank" primaryText="Sort by Rank" onClick={(e) => this.setSort("rank")} />
+              <MenuItem value="date" primaryText="Sort by Date" onClick={(e) => this.setSort("date")} />
             </IconMenu>
           </ToolbarGroup>
         </Toolbar>
         {
-          this.state.posts.map((post, index) => <PostListItem
+          this.sortedPosts().map((post, index) => <PostListItem
             key={post.id}
             rank={index+1}
             title={post.title}
             voteScore={post.voteScore}
             author={post.author}
             commentCount={post.commentCount}
+            timestamp={post.timestamp}
             />)
         }
       </div>

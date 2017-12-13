@@ -3,12 +3,16 @@ import { Card, CardHeader, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class PostListItem extends Component {
+  subtitle = `${this.props.voteScore} points
+  | posted by ${this.props.author}
+  | ${this.props.commentCount} comments
+  | ${new Date(this.props.timestamp)}`
   render() {
     return(
       <Card>
         <CardHeader
           title={this.props.title}
-          subtitle={`${this.props.voteScore} points | posted by ${this.props.author} | ${this.props.commentCount} comments`}
+          subtitle={this.subtitle}
           avatar={`https://dummyimage.com/128x128/000/fff.png&text=${this.props.rank}`}
         />
         <CardActions>
