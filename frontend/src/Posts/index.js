@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PostListItem from './PostListItem';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import AppBar from 'material-ui/AppBar';
-
+import MenuItem from 'material-ui/MenuItem';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
+import RaisedButton from 'material-ui/RaisedButton';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import SortIcon from 'material-ui/svg-icons/content/sort';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      sortBy: 'rank'
     }
   }
 
@@ -35,19 +39,27 @@ class Posts extends Component {
       })
   }
 
-  actionButtons = <FloatingActionButton>
-    <ContentAdd />
-  </FloatingActionButton>
-
   render() {
     return (
       <div>
         <AppBar
           title={`All Posts (${this.state.posts.length})`}
-          iconElementRight={this.actionButtons}
         />
+        <Toolbar>
+          <ToolbarGroup firstChild={true}>
+            <RaisedButton label="Create Post" />
+            <IconMenu
+              iconButtonElement={<IconButton><SortIcon /></IconButton>}
+              value={this.state.rank}
+            >
+              <MenuItem value="rank" primaryText="Sort by Rank" />
+              <MenuItem value="date" primaryText="Sort by Date" />
+            </IconMenu>
+          </ToolbarGroup>
+        </Toolbar>
         {
           this.state.posts.map((post, index) => <PostListItem
+            key={post.id}
             rank={index+1}
             title={post.title}
             voteScore={post.voteScore}
