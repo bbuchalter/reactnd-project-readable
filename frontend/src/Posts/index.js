@@ -7,12 +7,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
+import { loadPosts } from './actions';
+import { connect } from 'react-redux';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
       sortBy: 'rank'
     }
   }
@@ -33,20 +34,18 @@ class Posts extends Component {
     fetch(url, options)
       .then(result => result.json())
       .then(posts => {
-        this.setState(state => ({
-          posts: posts
-        }))
+        this.props.loadPosts(posts)
       })
   }
 
   sortedPosts = () => {
     switch(this.state.sortBy) {
       case 'rank':
-        return this.state.posts.sort((a,b) => (b.voteScore-a.voteScore));
+        return this.props.posts.sort((a,b) => (b.voteScore-a.voteScore));
       case 'date':
-        return this.state.posts.sort((a,b) => (b.timestamp-a.timestamp));
+        return this.props.posts.sort((a,b) => (b.timestamp-a.timestamp));
       default:
-        return this.state.posts;
+        return this.props.posts;
     }
   }
 
@@ -56,7 +55,7 @@ class Posts extends Component {
     return (
       <div>
         <AppBar
-          title={`All Posts (${this.state.posts.length})`}
+          title={`All Posts (${this.props.posts.length})`}
         />
         <Toolbar>
           <ToolbarGroup firstChild={true}>
@@ -86,4 +85,14 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+function mapStateToProps ({ posts }) {
+  return { posts }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    loadPosts: (data) => dispatch(loadPosts(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
