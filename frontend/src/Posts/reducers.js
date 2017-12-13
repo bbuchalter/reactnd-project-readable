@@ -1,4 +1,4 @@
-import { LOAD_POSTS, UPVOTE } from './actions';
+import { LOAD_POSTS, UPVOTE, DOWNVOTE } from './actions';
 
 function posts(state = {}, action) {
   const { posts, postId } = action
@@ -16,6 +16,14 @@ function posts(state = {}, action) {
         [postId]: {
           ...state[postId],
           voteScore: state[postId].voteScore+1
+        }
+      }
+    case DOWNVOTE:
+      return {
+        ...state,
+        [postId]: {
+          ...state[postId],
+          voteScore: state[postId].voteScore-1
         }
       }
     default:

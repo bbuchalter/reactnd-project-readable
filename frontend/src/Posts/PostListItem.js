@@ -18,7 +18,7 @@ class PostListItem extends Component {
         />
         <CardActions>
           <RaisedButton label="Vote Up" onClick={(e) => this.props.upVote(this.props.postId)} />
-          <RaisedButton label="Vote Down" />
+          <RaisedButton label="Vote Down" onClick={(e) => this.props.downVote(this.props.postId)} />
           <RaisedButton label="Edit" />
           <RaisedButton label="Delete" />
         </CardActions>

@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
-import { loadPosts, upVote } from './actions';
+import { loadPosts, upVote, downVote } from './actions';
 import { connect } from 'react-redux';
 
 class Posts extends Component {
@@ -81,6 +81,7 @@ class Posts extends Component {
             commentCount={post.commentCount}
             timestamp={post.timestamp}
             upVote={this.props.upVote}
+            downVote={this.props.downVote}
             />)
         }
       </div>
@@ -96,6 +97,7 @@ function mapDispatchToProps (dispatch) {
   return {
     loadPosts: (data) => dispatch(loadPosts(data)),
     upVote: (data) => dispatch(upVote(data)),
+    downVote: (data) => dispatch(downVote(data)),
   }
 }
 
