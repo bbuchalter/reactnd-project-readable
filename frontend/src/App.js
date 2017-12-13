@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Paper from 'material-ui/Paper';
+import Posts from './Posts/index.js';
 
 const style = {
   width: '80%',
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <Paper style={style}>
         <h1>Readable</h1>
+        <Posts />
       </Paper>
     );
   }
