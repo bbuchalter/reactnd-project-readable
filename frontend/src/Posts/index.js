@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
-import { loadPosts } from './actions';
+import { loadPosts, upVote } from './actions';
 import { connect } from 'react-redux';
 
 class Posts extends Component {
@@ -39,13 +39,14 @@ class Posts extends Component {
   }
 
   sortedPosts = () => {
+    const allPosts = Object.values(this.props.posts);
     switch(this.state.sortBy) {
       case 'rank':
-        return this.props.posts.sort((a,b) => (b.voteScore-a.voteScore));
+        return allPosts.sort((a,b) => (b.voteScore-a.voteScore));
       case 'date':
-        return this.props.posts.sort((a,b) => (b.timestamp-a.timestamp));
+        return allPosts.sort((a,b) => (b.timestamp-a.timestamp));
       default:
-        return this.props.posts;
+        return allPosts;
     }
   }
 
@@ -72,12 +73,14 @@ class Posts extends Component {
         {
           this.sortedPosts().map((post, index) => <PostListItem
             key={post.id}
+            postId={post.id}
             rank={index+1}
             title={post.title}
             voteScore={post.voteScore}
             author={post.author}
             commentCount={post.commentCount}
             timestamp={post.timestamp}
+            upVote={this.props.upVote}
             />)
         }
       </div>
@@ -91,7 +94,8 @@ function mapStateToProps ({ posts }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loadPosts: (data) => dispatch(loadPosts(data))
+    loadPosts: (data) => dispatch(loadPosts(data)),
+    upVote: (data) => dispatch(upVote(data)),
   }
 }
 

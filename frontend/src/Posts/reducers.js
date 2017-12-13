@@ -1,11 +1,23 @@
-import { LOAD_POSTS } from './actions';
+import { LOAD_POSTS, UPVOTE } from './actions';
 
-function posts(state = [], action) {
-  const { posts } = action
+function posts(state = {}, action) {
+  const { posts, postId } = action
 
   switch(action.type) {
     case LOAD_POSTS:
-      return posts;
+      let postsById = {};
+      posts.forEach((post) => {
+        postsById[post.id] = post
+      });
+      return postsById;
+    case UPVOTE:
+      return {
+        ...state,
+        [postId]: {
+          ...state[postId],
+          voteScore: state[postId].voteScore+1
+        }
+      }
     default:
       return state;
   }
