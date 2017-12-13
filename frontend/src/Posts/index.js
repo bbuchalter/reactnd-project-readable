@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PostListItem from './PostListItem';
 
 class Posts extends Component {
   constructor(props) {
@@ -34,13 +35,15 @@ class Posts extends Component {
     return (
       <div>
         <h2>All Posts ({this.state.posts.length})</h2>
-        <ul>
-          {
-            this.state.posts.map((post) =>
-              <li key={post.id}>{post.title}</li>
-            )
-          }
-        </ul>
+        {
+          this.state.posts.map((post, index) => <PostListItem
+            rank={index+1}
+            title={post.title}
+            voteScore={post.voteScore}
+            author={post.author}
+            commentCount={post.commentCount}
+            />)
+        }
       </div>
     )
   }
