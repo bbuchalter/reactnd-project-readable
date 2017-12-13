@@ -12,7 +12,6 @@ class App extends Component {
   render() {
     return (
       <Paper style={style}>
-        <h1>Readable</h1>
         <Posts />
       </Paper>
     );

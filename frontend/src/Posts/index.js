@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PostListItem from './PostListItem';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import AppBar from 'material-ui/AppBar';
+
 
 class Posts extends Component {
   constructor(props) {
@@ -31,10 +35,17 @@ class Posts extends Component {
       })
   }
 
+  actionButtons = <FloatingActionButton>
+    <ContentAdd />
+  </FloatingActionButton>
+
   render() {
     return (
       <div>
-        <h2>All Posts ({this.state.posts.length})</h2>
+        <AppBar
+          title={`All Posts (${this.state.posts.length})`}
+          iconElementRight={this.actionButtons}
+        />
         {
           this.state.posts.map((post, index) => <PostListItem
             rank={index+1}
