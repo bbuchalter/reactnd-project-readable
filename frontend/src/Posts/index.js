@@ -7,9 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
-import { loadPosts, upVote, downVote } from './actions';
+import { requestPosts, upVote, downVote } from './actions';
 import { connect } from 'react-redux';
-import Api from '../Api';
 
 class Posts extends Component {
   constructor(props) {
@@ -20,10 +19,7 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-   Api.fetchPosts()
-      .then(posts => {
-        this.props.loadPosts(posts)
-      })
+    this.props.requestPosts()
   }
 
   allPosts = () => Object.values(this.props.posts);
@@ -84,7 +80,7 @@ function mapStateToProps ({ posts }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    loadPosts: (data) => dispatch(loadPosts(data)),
+    requestPosts: () => dispatch(requestPosts()),
     upVote: (data) => dispatch(upVote(data)),
     downVote: (data) => dispatch(downVote(data)),
   }

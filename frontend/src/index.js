@@ -4,14 +4,22 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import posts from './Posts/reducers';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import postsSaga from './Posts/sagas';
+import createSagaMiddleware from 'redux-saga';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({posts}),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(
+    applyMiddleware(sagaMiddleware)
+  )
 );
+
+sagaMiddleware.run(postsSaga);
 
 const ThemedApp = () => (
   <MuiThemeProvider>
