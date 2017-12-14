@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PostListItem from './PostListItem';
-import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -40,9 +39,6 @@ class Posts extends Component {
   render() {
     return (
       <div>
-        <AppBar
-          title={`All Posts (${this.allPosts().length})`}
-        />
         <Toolbar>
           <ToolbarGroup firstChild={true}>
             <RaisedButton label="Create Post" />
