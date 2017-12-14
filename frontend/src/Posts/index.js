@@ -9,6 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
 import { loadPosts, upVote, downVote } from './actions';
 import { connect } from 'react-redux';
+import Api from '../Api';
 
 class Posts extends Component {
   constructor(props) {
@@ -19,20 +20,7 @@ class Posts extends Component {
   }
 
   componentDidMount() {
-    let token = localStorage.token
-
-    if (!token)
-      token = localStorage.token = Math.random().toString(36).substr(-8)
-
-    const headers = {
-      'Accept': 'application/json',
-      'Authorization': token
-    }
-
-    const url = "http://localhost:3001/posts"
-    const options = {headers}
-    fetch(url, options)
-      .then(result => result.json())
+   Api.fetchPosts()
       .then(posts => {
         this.props.loadPosts(posts)
       })
