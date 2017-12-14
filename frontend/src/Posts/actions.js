@@ -1,7 +1,8 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const LOAD_POSTS = 'LOAD_POSTS';
-export const UPVOTE = 'UPVOTE';
+export const REQUEST_UPVOTE = 'REQUEST_UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
+export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 
 export function requestPosts() {
   return {
@@ -16,9 +17,9 @@ export function loadPosts (posts) {
   }
 }
 
-export function upVote(postId) {
+export function requestUpVote(postId) {
   return {
-    type: UPVOTE,
+    type: REQUEST_UPVOTE,
     postId
   }
 }
@@ -27,5 +28,12 @@ export function downVote(postId) {
   return {
     type: DOWNVOTE,
     postId
+  }
+}
+
+export function updateLocalPost(post) {
+  return {
+    type: UPDATE_LOCAL_POST,
+    post
   }
 }
