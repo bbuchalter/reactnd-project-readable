@@ -21,7 +21,7 @@ class Api {
     )
   }
 
-  static upVote(postId) {
+  static vote(postId, vote) {
     const headers = {
       'Authorization': Api.token(),
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ class Api {
     const options = {
       headers,
       method: "POST",
-      body: JSON.stringify({ option: "upVote" })
+      body: JSON.stringify({ option: vote })
     }
 
     return(fetch(url, options)

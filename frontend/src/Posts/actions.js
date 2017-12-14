@@ -1,7 +1,7 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const REQUEST_UPVOTE = 'REQUEST_UPVOTE';
-export const DOWNVOTE = 'DOWNVOTE';
+export const REQUEST_DOWNVOTE = 'REQUEST_DOWNVOTE';
 export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 
 export function requestPosts() {
@@ -24,9 +24,9 @@ export function requestUpVote(postId) {
   }
 }
 
-export function downVote(postId) {
+export function requestDownVote(postId) {
   return {
-    type: DOWNVOTE,
+    type: REQUEST_DOWNVOTE,
     postId
   }
 }
