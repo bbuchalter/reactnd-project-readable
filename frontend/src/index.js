@@ -9,6 +9,7 @@ import posts from './Posts/reducers';
 import { Provider } from 'react-redux';
 import postsSaga from './Posts/sagas';
 import createSagaMiddleware from 'redux-saga';
+import { BrowserRouter } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const sagaMiddleware = createSagaMiddleware();
@@ -24,7 +25,9 @@ sagaMiddleware.run(postsSaga);
 const ThemedApp = () => (
   <MuiThemeProvider>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </MuiThemeProvider>
 );

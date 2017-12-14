@@ -58,6 +58,7 @@ class Posts extends Component {
         {
           this.sortedPosts().map((post, index) => <PostListItem
             key={post.id}
+            category={post.category}
             postId={post.id}
             rank={index+1}
             title={post.title}
