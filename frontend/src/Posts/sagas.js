@@ -7,7 +7,8 @@ import {
   REQUEST_POST,
   LOAD_POSTS,
   UPDATE_LOCAL_POST,
-  CREATE_POST
+  CREATE_POST,
+  DELETE_POST,
  } from './actions';
 
 function* fetchPosts(action) {
@@ -55,12 +56,22 @@ function* createPost(action) {
   }
 }
 
+function* deletePost(action) {
+  try {
+    const post = yield call(Api.deletePost, action.postId)
+    yield put({type: UPDATE_LOCAL_POST, post})
+  } catch (e) {
+    console.error(DELETE_POST, e)
+  }
+}
+
 function* postsSaga() {
   yield takeLatest(REQUEST_POSTS, fetchPosts);
   yield takeLatest(REQUEST_POST, fetchPost);
   yield takeEvery(REQUEST_POST_UPVOTE, upVote);
   yield takeEvery(REQUEST_POST_DOWNVOTE, downVote);
   yield takeLatest(CREATE_POST, createPost);
+  yield takeEvery(DELETE_POST, deletePost);
 }
 
 export default postsSaga;

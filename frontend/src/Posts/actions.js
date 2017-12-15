@@ -5,6 +5,7 @@ export const REQUEST_POST_UPVOTE = 'REQUEST_POST_UPVOTE';
 export const REQUEST_POST_DOWNVOTE = 'REQUEST_POST_DOWNVOTE';
 export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export function requestPosts() {
   return {
@@ -51,5 +52,12 @@ export function createPost(post) {
   return {
     type: CREATE_POST,
     post
+  }
+}
+
+export function deletePost(postId) {
+  return {
+    type: DELETE_POST,
+    postId
   }
 }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
+import { deletePost } from './actions';
+import { connect } from 'react-redux';
 
 class PostListItem extends Component {
   render() {
@@ -23,7 +25,7 @@ class PostListItem extends Component {
           <RaisedButton label="Vote Up" onClick={(e) => this.props.upVote(this.props.id)} />
           <RaisedButton label="Vote Down" onClick={(e) => this.props.downVote(this.props.id)} />
           <RaisedButton label="Edit" />
-          <RaisedButton label="Delete" />
+          <RaisedButton label="Delete" onClick={(e) => this.props.deletePost(this.props.id)} />
         </CardActions>
         { this.props.children }
       </Card>
@@ -31,4 +33,10 @@ class PostListItem extends Component {
   }
 }
 
-export default PostListItem;
+function mapDispatchToProps (dispatch) {
+  return {
+    deletePost: (data) => dispatch(deletePost(data)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PostListItem);
