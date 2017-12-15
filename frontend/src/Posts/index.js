@@ -7,7 +7,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
 import ContentFilter from 'material-ui/svg-icons/content/filter-list';
-import { requestPosts, requestPostUpVote, requestPostDownVote } from './actions';
+import { requestPosts } from './actions';
 import { requestCategories } from '../Categories/actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -85,8 +85,6 @@ class Posts extends Component {
         {
           this.allPosts().length > 0 && this.sortedPosts().map((post) => <PostListItem
             key={post.id}
-            upVote={this.props.requestPostUpVote}
-            downVote={this.props.requestPostDownVote}
             {...post}
             />)
         }
@@ -104,8 +102,6 @@ function mapDispatchToProps (dispatch) {
   return {
     requestPosts: () => dispatch(requestPosts()),
     requestCategories: () => dispatch(requestCategories()),
-    requestPostUpVote: (data) => dispatch(requestPostUpVote(data)),
-    requestPostDownVote: (data) => dispatch(requestPostDownVote(data)),
   }
 }
 
