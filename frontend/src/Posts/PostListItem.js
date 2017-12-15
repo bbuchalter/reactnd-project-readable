@@ -12,7 +12,7 @@ class PostListItem extends Component {
 
     return(
       <Card>
-        <Link to={`/${this.props.category}/${this.props.postId}`}>
+        <Link to={`/${this.props.category}/${this.props.id}`}>
           <CardHeader
             title={this.props.title}
             subtitle={subtitle}
@@ -20,8 +20,8 @@ class PostListItem extends Component {
           />
         </Link>
         <CardActions>
-          <RaisedButton label="Vote Up" onClick={(e) => this.props.upVote(this.props.postId)} />
-          <RaisedButton label="Vote Down" onClick={(e) => this.props.downVote(this.props.postId)} />
+          <RaisedButton label="Vote Up" onClick={(e) => this.props.upVote(this.props.id)} />
+          <RaisedButton label="Vote Down" onClick={(e) => this.props.downVote(this.props.id)} />
           <RaisedButton label="Edit" />
           <RaisedButton label="Delete" />
         </CardActions>

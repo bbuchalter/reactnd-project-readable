@@ -52,17 +52,11 @@ class Posts extends Component {
           </ToolbarGroup>
         </Toolbar>
         {
-          this.sortedPosts().map((post, index) => <PostListItem
+          this.sortedPosts().map((post) => <PostListItem
             key={post.id}
-            category={post.category}
-            postId={post.id}
-            title={post.title}
-            voteScore={post.voteScore}
-            author={post.author}
-            commentCount={post.commentCount}
-            timestamp={post.timestamp}
             upVote={this.props.requestUpVote}
             downVote={this.props.requestDownVote}
+            {...post}
             />)
         }
       </div>
