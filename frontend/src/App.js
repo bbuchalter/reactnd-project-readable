@@ -45,6 +45,7 @@ class App extends Component {
 
       <Paper>
         <Route exact path="/" component={Posts} />
+        <Route exact path="/:category" component={Posts} />
         <Route path="/:category/:postId" component={PostDetail} />
       </Paper>
     </div>
