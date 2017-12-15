@@ -4,6 +4,7 @@ import {
   REQUEST_UPVOTE,
   REQUEST_DOWNVOTE,
   REQUEST_POSTS,
+  REQUEST_POST,
   LOAD_POSTS,
   UPDATE_LOCAL_POST
  } from './actions';
@@ -14,6 +15,15 @@ function* fetchPosts(action) {
     yield put({type: LOAD_POSTS, posts});
   } catch (e) {
     console.error(REQUEST_POSTS, e)
+  }
+}
+
+function* fetchPost(action) {
+  try {
+    const post = yield call(Api.fetchPost, action.postId)
+    yield put({type: UPDATE_LOCAL_POST, post});
+  } catch (e) {
+    console.error(REQUEST_POST, e)
   }
 }
 
@@ -37,6 +47,7 @@ function* downVote(action) {
 
 function* postsSaga() {
   yield takeLatest(REQUEST_POSTS, fetchPosts);
+  yield takeLatest(REQUEST_POST, fetchPost);
   yield takeEvery(REQUEST_UPVOTE, upVote);
   yield takeEvery(REQUEST_DOWNVOTE, downVote);
 }

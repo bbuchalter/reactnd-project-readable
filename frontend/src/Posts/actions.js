@@ -1,4 +1,5 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const REQUEST_POST = 'REQUEST_POST';
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const REQUEST_UPVOTE = 'REQUEST_UPVOTE';
 export const REQUEST_DOWNVOTE = 'REQUEST_DOWNVOTE';
@@ -7,6 +8,13 @@ export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 export function requestPosts() {
   return {
     type: REQUEST_POSTS
+  }
+}
+
+export function requestPost(postId) {
+  return {
+    type: REQUEST_POST,
+    postId
   }
 }
 
