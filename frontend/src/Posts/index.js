@@ -28,11 +28,12 @@ class Posts extends Component {
   allPosts = () => {
     const category = this.props.match.params.category;
     const allPosts = Object.values(this.props.posts);
+    const notDeleted = allPosts.filter((post) => !post.deleted)
     if(category) {
-      const postsForCategory = allPosts.filter((post) => post.category === category)
+      const postsForCategory = notDeleted.filter((post) => post.category === category)
       return postsForCategory;
     } else {
-      return allPosts;
+      return notDeleted;
     }
   }
 
