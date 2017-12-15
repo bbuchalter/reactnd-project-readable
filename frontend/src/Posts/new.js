@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { requestCategories } from '../Categories/actions';
 import { createPost } from './actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class PostForm extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class PostForm extends Component {
 
   handleSubmit(event) {
     this.props.createPost(this.state);
+    this.props.history.push('/');
   }
 
   render() {
@@ -85,4 +87,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm));

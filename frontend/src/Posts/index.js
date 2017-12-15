@@ -16,7 +16,7 @@ class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortBy: 'rank'
+      sortBy: 'date'
     }
   }
 
