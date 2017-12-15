@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { requestCategories } from '../Categories/actions';
+import { connect } from 'react-redux';
 
 class PostForm extends Component {
   constructor(props) {
@@ -15,6 +17,10 @@ class PostForm extends Component {
       author: '',
       category: '',
     }
+  }
+
+  componentDidMount() {
+    this.props.requestCategories()
   }
 
   render() {
@@ -41,11 +47,15 @@ class PostForm extends Component {
             value={this.state.category}
             onChange={(event, index, value) => this.setState({category: value})}
           >
-            <MenuItem value={1} primaryText="Never" />
-            <MenuItem value={2} primaryText="Every Night" />
-            <MenuItem value={3} primaryText="Weeknights" />
-            <MenuItem value={4} primaryText="Weekends" />
-            <MenuItem value={5} primaryText="Weekly" />
+              {this.props.categories.map((category) => {
+                return (
+                  <MenuItem
+                    key={category.path}
+                    primaryText={category.name}
+                    value={category.path}
+                  />
+                )
+              })}
           </SelectField><br />
           <TextField
             floatingLabelText="Body"
@@ -59,4 +69,14 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+function mapStateToProps ({ categories }) {
+  return { categories }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    requestCategories: () => dispatch(requestCategories()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
