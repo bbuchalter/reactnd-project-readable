@@ -6,7 +6,8 @@ import {
   REQUEST_POSTS,
   REQUEST_POST,
   LOAD_POSTS,
-  UPDATE_LOCAL_POST
+  UPDATE_LOCAL_POST,
+  CREATE_POST
  } from './actions';
 
 function* fetchPosts(action) {
@@ -45,11 +46,21 @@ function* downVote(action) {
   }
 }
 
+function* createPost(action) {
+  try {
+    const post = yield call(Api.createPost, action.post)
+    yield put({type: UPDATE_LOCAL_POST, post})
+  } catch (e) {
+    console.error(CREATE_POST, e)
+  }
+}
+
 function* postsSaga() {
   yield takeLatest(REQUEST_POSTS, fetchPosts);
   yield takeLatest(REQUEST_POST, fetchPost);
   yield takeEvery(REQUEST_POST_UPVOTE, upVote);
   yield takeEvery(REQUEST_POST_DOWNVOTE, downVote);
+  yield takeLatest(CREATE_POST, createPost);
 }
 
 export default postsSaga;

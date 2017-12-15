@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { requestCategories } from '../Categories/actions';
+import { createPost } from './actions';
 import { connect } from 'react-redux';
 
 class PostForm extends Component {
@@ -20,7 +21,11 @@ class PostForm extends Component {
   }
 
   componentDidMount() {
-    this.props.requestCategories()
+    this.props.requestCategories();
+  }
+
+  handleSubmit(event) {
+    this.props.createPost(this.state);
   }
 
   render() {
@@ -28,7 +33,7 @@ class PostForm extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup firstChild={true}>
-            <RaisedButton label="Save Post" />
+            <RaisedButton label="Save Post" onClick={(e) => this.handleSubmit(e)} />
           </ToolbarGroup>
         </Toolbar>
         <Paper>
@@ -76,6 +81,7 @@ function mapStateToProps ({ categories }) {
 function mapDispatchToProps (dispatch) {
   return {
     requestCategories: () => dispatch(requestCategories()),
+    createPost: (data) => dispatch(createPost(data)),
   }
 }
 
