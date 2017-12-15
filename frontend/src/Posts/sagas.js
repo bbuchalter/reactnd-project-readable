@@ -29,7 +29,7 @@ function* fetchPost(action) {
 
 function* upVote(action) {
   try {
-    const post = yield call(Api.vote, action.postId, "upVote");
+    const post = yield call(Api.postVote, action.postId, "upVote");
     yield put({type: UPDATE_LOCAL_POST, post})
   } catch (e) {
     console.error(REQUEST_POST_UPVOTE, e)
@@ -38,7 +38,7 @@ function* upVote(action) {
 
 function* downVote(action) {
   try {
-    const post = yield call(Api.vote, action.postId, "downVote");
+    const post = yield call(Api.postVote, action.postId, "downVote");
     yield put({type: UPDATE_LOCAL_POST, post})
   } catch (e) {
     console.error(REQUEST_POST_DOWNVOTE, e)

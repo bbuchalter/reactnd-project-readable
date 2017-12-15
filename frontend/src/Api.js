@@ -47,7 +47,7 @@ class Api {
     )
   }
 
-  static vote(postId, vote) {
+  static postVote(postId, vote) {
     const headers = {
       'Authorization': Api.token(),
       'Content-Type': 'application/json',
