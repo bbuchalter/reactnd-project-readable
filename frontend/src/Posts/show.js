@@ -28,7 +28,7 @@ class PostDetail extends Component {
             <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
           </ToolbarGroup>
         </Toolbar>
-        { post && <PostListItem
+        { post && !post.deleted && <PostListItem
           key={post.id}
           upVote={this.props.requestPostUpVote}
           downVote={this.props.requestPostDownVote}
@@ -37,6 +37,10 @@ class PostDetail extends Component {
           <Comments comments={commentsForPost} />
         </PostListItem>
         }
+        { post && post.deleted &&
+          <h2>This Post Has Been Deleted</h2>
+        }
+        { !post && <h2>No Post Found Here</h2> }
       </div>
     )
   }
