@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PostListItem from './PostListItem';
-import { requestPost, requestUpVote, requestDownVote } from './actions';
+import { requestPost, requestPostUpVote, requestDownVote } from './actions';
 import { requestComments } from '../Comments/actions';
 import { connect } from 'react-redux';
 import Comments from '../Comments/Comments';
@@ -29,7 +29,7 @@ class PostDetail extends Component {
         </Toolbar>
         { post && <PostListItem
           key={post.id}
-          upVote={this.props.requestUpVote}
+          upVote={this.props.requestPostUpVote}
           downVote={this.props.requestDownVote}
           {...post}
         >
@@ -49,7 +49,7 @@ function mapDispatchToProps (dispatch) {
   return {
     requestPost: (postId) => dispatch(requestPost(postId)),
     requestComments: (postId) => dispatch(requestComments(postId)),
-    requestUpVote: (data) => dispatch(requestUpVote(data)),
+    requestPostUpVote: (data) => dispatch(requestPostUpVote(data)),
     requestDownVote: (data) => dispatch(requestDownVote(data)),
   }
 }

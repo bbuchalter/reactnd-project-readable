@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
-import { requestPosts, requestUpVote, requestDownVote } from './actions';
+import { requestPosts, requestPostUpVote, requestDownVote } from './actions';
 import { connect } from 'react-redux';
 
 class Posts extends Component {
@@ -54,7 +54,7 @@ class Posts extends Component {
         {
           this.sortedPosts().map((post) => <PostListItem
             key={post.id}
-            upVote={this.props.requestUpVote}
+            upVote={this.props.requestPostUpVote}
             downVote={this.props.requestDownVote}
             {...post}
             />)
@@ -71,7 +71,7 @@ function mapStateToProps ({ posts }) {
 function mapDispatchToProps (dispatch) {
   return {
     requestPosts: () => dispatch(requestPosts()),
-    requestUpVote: (data) => dispatch(requestUpVote(data)),
+    requestPostUpVote: (data) => dispatch(requestPostUpVote(data)),
     requestDownVote: (data) => dispatch(requestDownVote(data)),
   }
 }
