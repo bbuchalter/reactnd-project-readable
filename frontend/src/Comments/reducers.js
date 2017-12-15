@@ -1,5 +1,6 @@
 import {
   LOAD_COMMENTS,
+  UPDATE_LOCAL_COMMENT,
 } from './actions';
 
 function comments(state = {}, action) {
@@ -11,6 +12,12 @@ function comments(state = {}, action) {
         commentsById[comment.id] = comment
       });
       return commentsById;
+    case UPDATE_LOCAL_COMMENT:
+      const { comment } = action
+      return {
+        ...state,
+        [comment.id]: comment
+      }
     default:
       return state;
   }
