@@ -2,7 +2,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import Api from '../Api';
 import {
   REQUEST_POST_UPVOTE,
-  REQUEST_DOWNVOTE,
+  REQUEST_POST_DOWNVOTE,
   REQUEST_POSTS,
   REQUEST_POST,
   LOAD_POSTS,
@@ -41,7 +41,7 @@ function* downVote(action) {
     const post = yield call(Api.vote, action.postId, "downVote");
     yield put({type: UPDATE_LOCAL_POST, post})
   } catch (e) {
-    console.error(REQUEST_DOWNVOTE, e)
+    console.error(REQUEST_POST_DOWNVOTE, e)
   }
 }
 
@@ -49,7 +49,7 @@ function* postsSaga() {
   yield takeLatest(REQUEST_POSTS, fetchPosts);
   yield takeLatest(REQUEST_POST, fetchPost);
   yield takeEvery(REQUEST_POST_UPVOTE, upVote);
-  yield takeEvery(REQUEST_DOWNVOTE, downVote);
+  yield takeEvery(REQUEST_POST_DOWNVOTE, downVote);
 }
 
 export default postsSaga;

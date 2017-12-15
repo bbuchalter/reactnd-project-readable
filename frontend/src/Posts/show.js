@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PostListItem from './PostListItem';
-import { requestPost, requestPostUpVote, requestDownVote } from './actions';
+import { requestPost, requestPostUpVote, requestPostDownVote } from './actions';
 import { requestComments } from '../Comments/actions';
 import { connect } from 'react-redux';
 import Comments from '../Comments/Comments';
@@ -30,7 +30,7 @@ class PostDetail extends Component {
         { post && <PostListItem
           key={post.id}
           upVote={this.props.requestPostUpVote}
-          downVote={this.props.requestDownVote}
+          downVote={this.props.requestPostDownVote}
           {...post}
         >
           <Comments comments={commentsForPost} />
@@ -50,7 +50,7 @@ function mapDispatchToProps (dispatch) {
     requestPost: (postId) => dispatch(requestPost(postId)),
     requestComments: (postId) => dispatch(requestComments(postId)),
     requestPostUpVote: (data) => dispatch(requestPostUpVote(data)),
-    requestDownVote: (data) => dispatch(requestDownVote(data)),
+    requestPostDownVote: (data) => dispatch(requestPostDownVote(data)),
   }
 }
 

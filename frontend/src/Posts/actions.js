@@ -2,7 +2,7 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const REQUEST_POST = 'REQUEST_POST';
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const REQUEST_POST_UPVOTE = 'REQUEST_POST_UPVOTE';
-export const REQUEST_DOWNVOTE = 'REQUEST_DOWNVOTE';
+export const REQUEST_POST_DOWNVOTE = 'REQUEST_POST_DOWNVOTE';
 export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 
 export function requestPosts() {
@@ -32,9 +32,9 @@ export function requestPostUpVote(postId) {
   }
 }
 
-export function requestDownVote(postId) {
+export function requestPostDownVote(postId) {
   return {
-    type: REQUEST_DOWNVOTE,
+    type: REQUEST_POST_DOWNVOTE,
     postId
   }
 }
