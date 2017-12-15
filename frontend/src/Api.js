@@ -119,6 +119,23 @@ class Api {
       .then(result => result.json())
     )
   }
+
+  static deletePost(postId) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/posts/${postId}`
+    const options = {
+      headers,
+      method: "DELETE",
+    }
+
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
