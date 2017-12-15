@@ -34,6 +34,19 @@ class Api {
     )
   }
 
+  static fetchComments(postId) {
+    const headers = {
+      'Accept': 'application/json',
+      'Authorization': Api.token()
+    }
+
+    const url = `http://localhost:3001/posts/${postId}/comments`
+    const options = {headers}
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
+
   static vote(postId, vote) {
     const headers = {
       'Authorization': Api.token(),
