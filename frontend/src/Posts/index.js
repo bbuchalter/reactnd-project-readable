@@ -56,7 +56,6 @@ class Posts extends Component {
             key={post.id}
             category={post.category}
             postId={post.id}
-            rank={index+1}
             title={post.title}
             voteScore={post.voteScore}
             author={post.author}

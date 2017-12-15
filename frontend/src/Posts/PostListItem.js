@@ -16,7 +16,7 @@ class PostListItem extends Component {
           <CardHeader
             title={this.props.title}
             subtitle={subtitle}
-            avatar={`https://dummyimage.com/128x128/000/fff.png&text=${this.props.rank}`}
+            avatar={`https://dummyimage.com/128x128/000/fff.png&text=${this.props.voteScore || 'Zero'}`}
           />
         </Link>
         <CardActions>
