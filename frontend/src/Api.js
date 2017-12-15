@@ -1,3 +1,5 @@
+import uuidv1 from 'uuid/v1'
+
 class Api {
   static token() {
     let token = localStorage.token
@@ -91,6 +93,28 @@ class Api {
 
     const url = "http://localhost:3001/categories"
     const options = {headers}
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
+
+  static createPost(post) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/posts`
+    const options = {
+      headers,
+      method: "POST",
+      body: JSON.stringify({
+        ...post,
+        id: uuidv1(),
+        timestamp: Date.now(),
+      })
+    }
+
     return(fetch(url, options)
       .then(result => result.json())
     )
