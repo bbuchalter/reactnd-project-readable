@@ -82,6 +82,19 @@ class Api {
       .then(result => result.json())
     )
   }
+
+  static fetchCategories() {
+    const headers = {
+      'Accept': 'application/json',
+      'Authorization': Api.token()
+    }
+
+    const url = "http://localhost:3001/categories"
+    const options = {headers}
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
