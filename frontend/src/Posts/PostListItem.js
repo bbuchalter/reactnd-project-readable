@@ -25,6 +25,7 @@ class PostListItem extends Component {
           <RaisedButton label="Edit" />
           <RaisedButton label="Delete" />
         </CardActions>
+        { this.props.children }
       </Card>
     )
   }
