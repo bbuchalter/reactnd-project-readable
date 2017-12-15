@@ -7,6 +7,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import SortIcon from 'material-ui/svg-icons/content/sort';
 import { requestPosts, requestPostUpVote, requestPostDownVote } from './actions';
+import { requestCategories } from '../Categories/actions';
 import { connect } from 'react-redux';
 
 class Posts extends Component {
@@ -19,6 +20,7 @@ class Posts extends Component {
 
   componentDidMount() {
     this.props.requestPosts()
+    this.props.requestCategories()
   }
 
   allPosts = () => Object.values(this.props.posts);
@@ -64,13 +66,14 @@ class Posts extends Component {
   }
 }
 
-function mapStateToProps ({ posts }) {
-  return { posts }
+function mapStateToProps ({ posts, categories }) {
+  return { posts, categories }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     requestPosts: () => dispatch(requestPosts()),
+    requestCategories: () => dispatch(requestCategories()),
     requestPostUpVote: (data) => dispatch(requestPostUpVote(data)),
     requestPostDownVote: (data) => dispatch(requestPostDownVote(data)),
   }
