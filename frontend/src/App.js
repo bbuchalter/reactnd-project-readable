@@ -3,10 +3,11 @@ import './App.css';
 import Paper from 'material-ui/Paper';
 import Posts from './Posts/index.js';
 import PostDetail from './Posts/show.js';
-import { Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import PostForm from './Posts/new';
 
 class App extends Component {
   constructor(props) {
@@ -41,12 +42,20 @@ class App extends Component {
           containerElement={<Link to="/" />}
           onClick={() => this.toggleDrawer()}
         />
+        <MenuItem
+          primaryText="Create Post"
+          containerElement={<Link to="/posts/new" />}
+          onClick={() => this.toggleDrawer()}
+        />
       </Drawer>
 
       <Paper>
-        <Route exact path="/" component={Posts} />
-        <Route exact path="/:category" component={Posts} />
-        <Route path="/:category/:postId" component={PostDetail} />
+        <Switch>
+          <Route exact path="/" component={Posts} />
+          <Route exact path="/posts/new" component={PostForm} />
+          <Route exact path="/:category" component={Posts} />
+          <Route exact path="/:category/:postId" component={PostDetail} />
+        </Switch>
       </Paper>
     </div>
     );

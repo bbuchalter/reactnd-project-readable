@@ -6,6 +6,7 @@ import { requestPost, requestPostUpVote, requestPostDownVote } from './actions';
 import { requestComments } from '../Comments/actions';
 import { connect } from 'react-redux';
 import Comments from '../Comments/Comments';
+import { Link } from 'react-router-dom';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class PostDetail extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup firstChild={true}>
-            <RaisedButton label="Create Post" />
+            <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
           </ToolbarGroup>
         </Toolbar>
         { post && <PostListItem

@@ -54,7 +54,7 @@ class Posts extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup firstChild={true}>
-            <RaisedButton label="Create Post" />
+            <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
             <IconMenu
               iconButtonElement={<IconButton><SortIcon /></IconButton>}
               value={this.state.sortBy}
