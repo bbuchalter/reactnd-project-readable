@@ -136,6 +136,24 @@ class Api {
       .then(result => result.json())
     )
   }
+
+
+  static deleteComment(commentId) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/comments/${commentId}`
+    const options = {
+      headers,
+      method: "DELETE",
+    }
+
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
