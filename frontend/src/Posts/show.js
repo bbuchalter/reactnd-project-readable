@@ -18,7 +18,7 @@ class PostDetail extends Component {
   render() {
     const post = this.props.posts[this.props.match.params.postId];
     const commentsForPost = Object.values(this.props.comments).filter((comment) => {
-      return(comment.parentId === post.id)
+      return(comment.parentId === post.id && !comment.deleted)
     });
 
     return (

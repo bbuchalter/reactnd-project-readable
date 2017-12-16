@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardHeader, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import { requestCommentUpVote, requestCommentDownVote } from './actions';
+import { requestCommentUpVote, requestCommentDownVote, requestDeleteComment } from './actions';
 import { connect } from 'react-redux';
 
 class CommentListItem extends Component {
@@ -16,22 +16,19 @@ class CommentListItem extends Component {
           <RaisedButton label="Vote Up" onClick={(e) => this.props.requestCommentUpVote(this.props.id)} />
           <RaisedButton label="Vote Down" onClick={(e) => this.props.requestCommentDownVote(this.props.id)} />
           <RaisedButton label="Edit" />
-          <RaisedButton label="Delete" />
+          <RaisedButton label="Delete" onClick={(e) => this.props.requestDeleteComment(this.props.id)} />
         </CardActions>
       </Card>
     )
   }
 }
 
-function mapStateToProps() {
-  return {}
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     requestCommentUpVote: (data) => dispatch(requestCommentUpVote(data)),
     requestCommentDownVote: (data) => dispatch(requestCommentDownVote(data)),
+    requestDeleteComment: (data) => dispatch(requestDeleteComment(data)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentListItem);
+export default connect(null, mapDispatchToProps)(CommentListItem);

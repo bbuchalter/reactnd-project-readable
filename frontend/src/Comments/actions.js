@@ -3,6 +3,7 @@ export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 export const REQUEST_COMMENT_UPVOTE = 'REQUEST_COMMENT_UPVOTE';
 export const REQUEST_COMMENT_DOWNVOTE = 'REQUEST_COMMENT_DOWNVOTE';
 export const UPDATE_LOCAL_COMMENT = 'UPDATE_LOCAL_COMMENT';
+export const REQUEST_DELETE_COMMENT = 'REQUEST_DELETE_COMMENT';
 
 export function requestComments(postId) {
   return {
@@ -36,5 +37,12 @@ export function updateLocalComment (comment) {
   return {
     type: UPDATE_LOCAL_COMMENT,
     comment
+  }
+}
+
+export function requestDeleteComment(commentId) {
+  return {
+    type: REQUEST_DELETE_COMMENT,
+    commentId
   }
 }
