@@ -26,6 +26,7 @@ class PostDetail extends Component {
         <Toolbar>
           <ToolbarGroup firstChild={true}>
             <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
+            { post && <RaisedButton containerElement={<Link to={`/${post.category}/${post.id}/comments/new`} />} label="Create Comment" /> }
           </ToolbarGroup>
         </Toolbar>
         { post && !post.deleted && <PostListItem
