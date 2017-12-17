@@ -7,6 +7,7 @@ import {
   REQUEST_COMMENT_DOWNVOTE,
   UPDATE_LOCAL_COMMENT,
   REQUEST_DELETE_COMMENT,
+  CREATE_COMMENT,
  } from './actions';
 
 function* fetchComments(action) {
@@ -45,11 +46,21 @@ function* deleteComment(action) {
   }
 }
 
+function* createComment(action) {
+  try {
+    const comment = yield call(Api.createComment, action.comment);
+    yield put({type: UPDATE_LOCAL_COMMENT, comment});
+  } catch (e) {
+    console.error(CREATE_COMMENT, e);
+  }
+}
+
 function* commentsSaga() {
   yield takeLatest(REQUEST_COMMENTS, fetchComments);
   yield takeEvery(REQUEST_COMMENT_UPVOTE, upVote);
   yield takeEvery(REQUEST_COMMENT_DOWNVOTE, downVote);
   yield takeEvery(REQUEST_DELETE_COMMENT, deleteComment);
+  yield takeEvery(CREATE_COMMENT, createComment);
 }
 
 export default commentsSaga;
