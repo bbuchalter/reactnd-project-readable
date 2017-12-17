@@ -17,33 +17,37 @@ class PostDetail extends Component {
 
   render() {
     const post = this.props.posts[this.props.match.params.postId];
-    const commentsForPost = Object.values(this.props.comments).filter((comment) => {
-      return(comment.parentId === post.id && !comment.deleted)
-    });
 
-    return (
-      <div>
-        <Toolbar>
-          <ToolbarGroup firstChild={true}>
-            <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
-            { post && <RaisedButton containerElement={<Link to={`/${post.category}/${post.id}/comments/new`} />} label="Create Comment" /> }
-          </ToolbarGroup>
-        </Toolbar>
-        { post && !post.deleted && <PostListItem
-          key={post.id}
-          upVote={this.props.requestPostUpVote}
-          downVote={this.props.requestPostDownVote}
-          {...post}
-        >
-          <Comments comments={commentsForPost} />
-        </PostListItem>
-        }
-        { post && post.deleted &&
-          <h2>This Post Has Been Deleted</h2>
-        }
-        { !post && <h2>No Post Found Here</h2> }
-      </div>
-    )
+    if(post) {
+      const commentsForPost = Object.values(this.props.comments).filter((comment) => {
+        return(comment.parentId === post.id && !comment.deleted)
+      });
+
+      return (
+        <div>
+          <Toolbar>
+            <ToolbarGroup firstChild={true}>
+              <RaisedButton containerElement={<Link to="/posts/new" />} label="Create Post" />
+              <RaisedButton containerElement={<Link to={`/${post.category}/${post.id}/comments/new`} />} label="Create Comment" />
+            </ToolbarGroup>
+          </Toolbar>
+          { !post.deleted && <PostListItem
+            key={post.id}
+            upVote={this.props.requestPostUpVote}
+            downVote={this.props.requestPostDownVote}
+            {...post}
+          >
+            <Comments comments={commentsForPost} />
+          </PostListItem>
+          }
+          { post.deleted &&
+            <h2>This Post Has Been Deleted</h2>
+          }
+        </div>
+      )
+    } else {
+      return(<h2>No Post Found Here</h2>);
+    }
   }
 }
 
