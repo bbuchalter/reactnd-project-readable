@@ -154,6 +154,28 @@ class Api {
       .then(result => result.json())
     )
   }
+
+  static createComment(comment) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/comments`
+    const options = {
+      headers,
+      method: "POST",
+      body: JSON.stringify({
+        ...comment,
+        id: uuidv1(),
+        timestamp: Date.now(),
+      })
+    }
+
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
