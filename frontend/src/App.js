@@ -7,7 +7,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import PostForm from './Posts/new';
+import NewPostPage from './Posts/new';
 import NewCommentPage from './Comments/new';
 import EditCommentPage from './Comments/edit';
 
@@ -54,7 +54,7 @@ class App extends Component {
       <Paper>
         <Switch>
           <Route exact path="/" component={Posts} />
-          <Route exact path="/posts/new" component={PostForm} />
+          <Route exact path="/posts/new" component={NewPostPage} />
           <Route exact path="/:category" component={Posts} />
           <Route exact path="/:category/:postId" component={PostDetail} />
           <Route exact path="/:category/:postId/comments/new" component={NewCommentPage} />

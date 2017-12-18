@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import { requestCategories } from '../Categories/actions';
 import { createPost } from './actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PostForm from './PostForm';
 
-class PostForm extends Component {
+class NewPostPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,53 +20,25 @@ class PostForm extends Component {
     this.props.requestCategories();
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     this.props.createPost(this.state);
     this.props.history.push('/');
   }
 
   render() {
     return (
-      <div>
-        <Toolbar>
-          <ToolbarGroup firstChild={true}>
-            <RaisedButton label="Save Post" onClick={(e) => this.handleSubmit(e)} />
-          </ToolbarGroup>
-        </Toolbar>
-        <Paper>
-          <TextField
-            floatingLabelText="Title"
-            value={this.state.title}
-            onChange={(e) => this.setState({title: e.target.value})}
-          /><br/>
-          <TextField
-            floatingLabelText="Author"
-            value={this.state.author}
-            onChange={(e) => this.setState({author: e.target.value})}
-          /><br/>
-          <SelectField
-            floatingLabelText="Category"
-            value={this.state.category}
-            onChange={(event, index, value) => this.setState({category: value})}
-          >
-              {this.props.categories.map((category) => {
-                return (
-                  <MenuItem
-                    key={category.path}
-                    primaryText={category.name}
-                    value={category.path}
-                  />
-                )
-              })}
-          </SelectField><br />
-          <TextField
-            floatingLabelText="Body"
-            multiLine={true}
-            value={this.state.body}
-            onChange={(e) => this.setState({body: e.target.value})}
-          /><br/>
-        </Paper>
-      </div>
+      <PostForm
+        handleSubmit={(e) => this.handleSubmit()}
+        onTitleChange={(e) => this.setState({title: e.target.value})}
+        onAuthorChange={(e) => this.setState({author: e.target.value})}
+        onCategoryChange={(event, index, value) => this.setState({category: value})}
+        onBodyChange={(e) => this.setState({body: e.target.value})}
+        categories={this.props.categories}
+        title={this.state.title}
+        author={this.state.author}
+        body={this.state.body}
+        category={this.state.category}
+      />
     )
   }
 }
@@ -87,4 +54,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPostPage));
