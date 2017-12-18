@@ -56,9 +56,10 @@ export function createComment(comment) {
   }
 }
 
-export function editComment(comment) {
+export function editComment({comment, commentId}) {
   return {
     type: EDIT_COMMENT,
-    comment
+    comment,
+    commentId
   }
 }

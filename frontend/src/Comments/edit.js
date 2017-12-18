@@ -29,8 +29,8 @@ class EditCommentPage extends Component {
   handleSubmit() {
     const { postId, category, commentId } = this.props.match.params;
     this.props.editComment({
-      ...this.state,
-      commentId
+      commentId,
+      comment: {...this.state}
     });
     this.props.history.push(`/${category}/${postId}`);
   }
