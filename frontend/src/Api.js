@@ -176,6 +176,27 @@ class Api {
       .then(result => result.json())
     )
   }
+
+  static updateComment(comment, commentId) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/comments/${commentId}`
+    const options = {
+      headers,
+      method: "PUT",
+      body: JSON.stringify({
+        ...comment,
+        timestamp: Date.now(),
+      })
+    }
+
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
