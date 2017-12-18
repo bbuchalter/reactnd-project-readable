@@ -18,7 +18,7 @@ class Comments extends Component {
           showMenuIconButton={false}
         />
         <Paper>
-          {this.props.comments.map((comment) => <CommentListItem key={comment.id} {...comment} />)}
+          {this.props.comments.map((comment) => <CommentListItem key={comment.id} {...comment} post={this.props.post} />)}
         </Paper>
       </div>
     )

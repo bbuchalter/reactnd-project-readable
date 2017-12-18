@@ -5,6 +5,7 @@ export const REQUEST_COMMENT_DOWNVOTE = 'REQUEST_COMMENT_DOWNVOTE';
 export const UPDATE_LOCAL_COMMENT = 'UPDATE_LOCAL_COMMENT';
 export const REQUEST_DELETE_COMMENT = 'REQUEST_DELETE_COMMENT';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 export function requestComments(postId) {
   return {
@@ -51,6 +52,13 @@ export function requestDeleteComment(commentId) {
 export function createComment(comment) {
   return {
     type: CREATE_COMMENT,
+    comment
+  }
+}
+
+export function editComment(comment) {
+  return {
+    type: EDIT_COMMENT,
     comment
   }
 }

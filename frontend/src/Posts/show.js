@@ -37,7 +37,7 @@ class PostDetail extends Component {
             downVote={this.props.requestPostDownVote}
             {...post}
           >
-            <Comments comments={commentsForPost} />
+            <Comments comments={commentsForPost} post={post} />
           </PostListItem>
           }
           { post.deleted &&
