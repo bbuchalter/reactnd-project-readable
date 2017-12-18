@@ -8,7 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import PostForm from './Posts/new';
-import CommentForm from './Comments/new';
+import NewCommentPage from './Comments/new';
 
 class App extends Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class App extends Component {
           <Route exact path="/posts/new" component={PostForm} />
           <Route exact path="/:category" component={Posts} />
           <Route exact path="/:category/:postId" component={PostDetail} />
-          <Route exact path="/:category/:postId/comments/new" component={CommentForm} />
+          <Route exact path="/:category/:postId/comments/new" component={NewCommentPage} />
         </Switch>
       </Paper>
     </div>

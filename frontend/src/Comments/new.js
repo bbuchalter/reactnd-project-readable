@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
 import { createComment } from './actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
-class CommentForm extends Component {
+class NewCommentPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,26 +24,13 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <div>
-        <Toolbar>
-          <ToolbarGroup firstChild={true}>
-            <RaisedButton label="Save Comment" onClick={(e) => this.handleSubmit(e)} />
-          </ToolbarGroup>
-        </Toolbar>
-        <Paper>
-          <TextField
-            floatingLabelText="Your Name"
-            value={this.state.author}
-            onChange={(e) => this.setState({author: e.target.value})}
-          /><br/>
-          <TextField
-            floatingLabelText="Your Comment"
-            multiLine={true}
-            value={this.state.body}
-            onChange={(e) => this.setState({body: e.target.value})}
-          /><br/>
-        </Paper>
-      </div>
+      <CommentForm
+        handleSubmit={(e) => this.handleSubmit(e)}
+        onAuthorChange={(e) => this.setState({author: e.target.value})}
+        onBodyChange={(e) => this.setState({body: e.target.value})}
+        author={this.state.author}
+        body={this.state.body}
+      />
     )
   }
 }
@@ -57,4 +41,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(CommentForm));
+export default withRouter(connect(null, mapDispatchToProps)(NewCommentPage));
