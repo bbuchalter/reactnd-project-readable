@@ -1,4 +1,5 @@
-import uuidv1 from 'uuid/v1'
+import uuidv1 from 'uuid/v1';
+import config from './config';
 
 class Api {
   static token() {
@@ -16,7 +17,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = "http://localhost:3001/posts"
+    const url = `${config.api_origin}/posts`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -29,7 +30,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `http://localhost:3001/posts/${postId}`
+    const url = `${config.api_origin}/posts/${postId}`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -42,7 +43,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `http://localhost:3001/posts/${postId}/comments`
+    const url = `${config.api_origin}/posts/${postId}/comments`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -55,7 +56,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/posts/${postId}`
+    const url = `${config.api_origin}/posts/${postId}`
     const options = {
       headers,
       method: "POST",
@@ -73,7 +74,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/comments/${commentId}`
+    const url = `${config.api_origin}/comments/${commentId}`
     const options = {
       headers,
       method: "POST",
@@ -91,7 +92,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = "http://localhost:3001/categories"
+    const url = `${config.api_origin}/categories`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -104,7 +105,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/posts`
+    const url = `${config.api_origin}/posts`
     const options = {
       headers,
       method: "POST",
@@ -126,7 +127,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/posts/${postId}`
+    const url = `${config.api_origin}/posts/${postId}`
     const options = {
       headers,
       method: "DELETE",
@@ -144,7 +145,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/comments/${commentId}`
+    const url = `${config.api_origin}/comments/${commentId}`
     const options = {
       headers,
       method: "DELETE",
@@ -161,7 +162,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/comments`
+    const url = `${config.api_origin}/comments`
     const options = {
       headers,
       method: "POST",
@@ -183,7 +184,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/comments/${commentId}`
+    const url = `${config.api_origin}/comments/${commentId}`
     const options = {
       headers,
       method: "PUT",
@@ -204,7 +205,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `http://localhost:3001/posts/${postId}`
+    const url = `${config.api_origin}/posts/${postId}`
     const options = {
       headers,
       method: "PUT",
