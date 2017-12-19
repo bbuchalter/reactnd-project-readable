@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardActions } from 'material-ui/Card';
+import { Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 import { deletePost, requestPostDownVote, requestPostUpVote } from './actions';
@@ -21,6 +21,9 @@ class PostListItem extends Component {
             avatar={`https://dummyimage.com/128x128/000/fff.png&text=${this.props.voteScore || 'Zero'}`}
           />
         </Link>
+        <CardText>
+          {this.props.body}
+        </CardText>
         <CardActions>
           <RaisedButton label="Vote Up" onClick={(e) => this.props.requestPostUpVote(this.props.id)} />
           <RaisedButton label="Vote Down" onClick={(e) => this.props.requestPostDownVote(this.props.id)} />
