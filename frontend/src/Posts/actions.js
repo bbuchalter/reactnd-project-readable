@@ -6,6 +6,7 @@ export const REQUEST_POST_DOWNVOTE = 'REQUEST_POST_DOWNVOTE';
 export const UPDATE_LOCAL_POST = 'UPDATE_LOCAL_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
 
 export function requestPosts() {
   return {
@@ -59,5 +60,13 @@ export function deletePost(postId) {
   return {
     type: DELETE_POST,
     postId
+  }
+}
+
+export function updatePost({post, postId}) {
+  return {
+    type: UPDATE_POST,
+    postId,
+    post,
   }
 }

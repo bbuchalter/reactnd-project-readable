@@ -9,6 +9,7 @@ import {
   UPDATE_LOCAL_POST,
   CREATE_POST,
   DELETE_POST,
+  UPDATE_POST,
  } from './actions';
 
 function* fetchPosts(action) {
@@ -65,6 +66,15 @@ function* deletePost(action) {
   }
 }
 
+function* updatePost(action) {
+  try {
+    const post = yield call(Api.updatePost, action.post, action.postId)
+    yield put({type: UPDATE_LOCAL_POST, post})
+  } catch (e) {
+    console.error(UPDATE_POST, e);
+  }
+}
+
 function* postsSaga() {
   yield takeLatest(REQUEST_POSTS, fetchPosts);
   yield takeLatest(REQUEST_POST, fetchPost);
@@ -72,6 +82,7 @@ function* postsSaga() {
   yield takeEvery(REQUEST_POST_DOWNVOTE, downVote);
   yield takeLatest(CREATE_POST, createPost);
   yield takeEvery(DELETE_POST, deletePost);
+  yield takeLatest(UPDATE_POST, updatePost);
 }
 
 export default postsSaga;

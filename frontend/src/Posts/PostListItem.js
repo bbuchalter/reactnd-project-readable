@@ -24,7 +24,7 @@ class PostListItem extends Component {
         <CardActions>
           <RaisedButton label="Vote Up" onClick={(e) => this.props.requestPostUpVote(this.props.id)} />
           <RaisedButton label="Vote Down" onClick={(e) => this.props.requestPostDownVote(this.props.id)} />
-          <RaisedButton label="Edit" />
+          <RaisedButton label="Edit" containerElement={<Link to={`/${this.props.category}/${this.props.id}/edit`} />}/>
           <RaisedButton label="Delete" onClick={(e) => this.props.deletePost(this.props.id)} />
         </CardActions>
         { this.props.children }

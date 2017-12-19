@@ -8,6 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import NewPostPage from './Posts/new';
+import EditPostPage from './Posts/edit';
 import NewCommentPage from './Comments/new';
 import EditCommentPage from './Comments/edit';
 
@@ -57,6 +58,7 @@ class App extends Component {
           <Route exact path="/posts/new" component={NewPostPage} />
           <Route exact path="/:category" component={Posts} />
           <Route exact path="/:category/:postId" component={PostDetail} />
+          <Route exact path="/:category/:postId/edit" component={EditPostPage} />
           <Route exact path="/:category/:postId/comments/new" component={NewCommentPage} />
           <Route exact path="/:category/:postId/comments/:commentId/edit" component={EditCommentPage} />
         </Switch>
