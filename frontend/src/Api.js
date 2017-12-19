@@ -197,6 +197,27 @@ class Api {
       .then(result => result.json())
     )
   }
+
+  static updatePost(post, postId) {
+    const headers = {
+      'Authorization': Api.token(),
+      'Content-Type': 'application/json',
+    }
+
+    const url = `http://localhost:3001/posts/${postId}`
+    const options = {
+      headers,
+      method: "PUT",
+      body: JSON.stringify({
+        ...post,
+        timestamp: Date.now(),
+      })
+    }
+
+    return(fetch(url, options)
+      .then(result => result.json())
+    )
+  }
 }
 
 export default Api;
