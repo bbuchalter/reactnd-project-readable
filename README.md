@@ -1,7 +1,7 @@
 # Readable
 
-This project uses React, Redux, Redux-Saga and Express to build a simple
-Reddit-style clone. See it in action at https://damp-beach-66185.herokuapp.com/
+This project uses React, Redux, Redux-Saga, Express and Material UI to build a simple
+Reddit-style app. See it in action at https://damp-beach-66185.herokuapp.com/
 
 # Start Developing
 
