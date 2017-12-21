@@ -1,5 +1,4 @@
 import uuidv1 from 'uuid/v1';
-import config from './config';
 
 class Api {
   static token() {
@@ -17,7 +16,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `${config.api_origin}/posts`
+    const url = `/api/posts`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -30,7 +29,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `${config.api_origin}/posts/${postId}`
+    const url = `/api/posts/${postId}`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -43,7 +42,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `${config.api_origin}/posts/${postId}/comments`
+    const url = `/api/posts/${postId}/comments`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -56,7 +55,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/posts/${postId}`
+    const url = `/api/posts/${postId}`
     const options = {
       headers,
       method: "POST",
@@ -74,7 +73,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/comments/${commentId}`
+    const url = `/api/comments/${commentId}`
     const options = {
       headers,
       method: "POST",
@@ -92,7 +91,7 @@ class Api {
       'Authorization': Api.token()
     }
 
-    const url = `${config.api_origin}/categories`
+    const url = `/api/categories`
     const options = {headers}
     return(fetch(url, options)
       .then(result => result.json())
@@ -105,7 +104,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/posts`
+    const url = `/api/posts`
     const options = {
       headers,
       method: "POST",
@@ -127,7 +126,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/posts/${postId}`
+    const url = `/api/posts/${postId}`
     const options = {
       headers,
       method: "DELETE",
@@ -145,7 +144,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/comments/${commentId}`
+    const url = `/api/comments/${commentId}`
     const options = {
       headers,
       method: "DELETE",
@@ -162,7 +161,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/comments`
+    const url = `/api/comments`
     const options = {
       headers,
       method: "POST",
@@ -184,7 +183,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/comments/${commentId}`
+    const url = `/api/comments/${commentId}`
     const options = {
       headers,
       method: "PUT",
@@ -205,7 +204,7 @@ class Api {
       'Content-Type': 'application/json',
     }
 
-    const url = `${config.api_origin}/posts/${postId}`
+    const url = `/api/posts/${postId}`
     const options = {
       headers,
       method: "PUT",
